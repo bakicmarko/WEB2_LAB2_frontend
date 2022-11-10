@@ -13,6 +13,9 @@ import { useContext } from "react";
 import { useNavigate } from "react-router";
 import { AccountContext } from "./AccountContext";
 
+const baseUrl = "https://web2-lab-backend.onrender.com";
+// const baseUrl = "http://localhost:5000";
+
 const Login = () => {
   const { setUser } = useContext(AccountContext);
   const navigate = useNavigate();
@@ -22,7 +25,7 @@ const Login = () => {
       onSubmit={(values, actions) => {
         const vals = { ...values };
         actions.resetForm();
-        fetch("http://localhost:5000/login", {
+        fetch(`${baseUrl}/login`, {
           method: "POST",
           credentials: "include",
           headers: {

@@ -12,7 +12,12 @@ import {
 } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
 
+import { useNavigate } from "react-router";
+
 const { Navigate } = require("react-router");
+
+const baseUrl = "https://web2-lab-backend.onrender.com";
+// const baseUrl = "http://localhost:5000";
 
 const useAuth = () => {
   const { user } = useContext(AccountContext);
@@ -20,7 +25,7 @@ const useAuth = () => {
 };
 
 const handleLogout = () => {
-  fetch("http://localhost:5000/logout", {
+  fetch(`${baseUrl}/logout`, {
     method: "POST",
     credentials: "include",
     headers: {
@@ -33,6 +38,7 @@ const handleLogout = () => {
 const Home = () => {
   const [data, setData] = useState(null);
   const isLoggedIn = useAuth();
+  const navigate = useNavigate();
   return isLoggedIn ? (
     <Formik
       initialValues={{
@@ -42,11 +48,8 @@ const Home = () => {
       }}
       onSubmit={(values, actions) => {
         actions.setFieldValue("username", "");
-        console.log("fetching");
-        console.log(values.csrfVulnSwitch);
-        console.log(values.sqlVulnSwitch);
         fetch(
-          `http://localhost:5000/info?userquery=${values.username}&sqlVulnSwitch=${values.sqlVulnSwitch}&csrfVulnSwitch=${values.csrfVulnSwitch}`,
+          `${baseUrl}/info?userquery=${values.username}&sqlVulnSwitch=${values.sqlVulnSwitch}&csrfVulnSwitch=${values.csrfVulnSwitch}`,
           {
             method: "GET",
             credentials: "include",
@@ -125,6 +128,7 @@ const Home = () => {
                   <Text key={row.acc_id}>{JSON.stringify(row)}</Text>
                 ))
               : null}
+            <Button onClick={() => navigate("/update")}>go on update</Button>
           </Form>
         </Center>
       )}

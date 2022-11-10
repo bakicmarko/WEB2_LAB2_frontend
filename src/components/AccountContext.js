@@ -3,12 +3,14 @@ import { useNavigate } from "react-router";
 const { createContext, useState, useEffect } = require("react");
 
 export const AccountContext = createContext();
+const baseUrl = "https://web2-lab-backend.onrender.com";
+// const baseUrl = "http://localhost:5000";
 
 const UserContext = ({ children }) => {
   const [user, setUser] = useState({ loggedIn: null });
   const navigate = useNavigate();
   useEffect(() => {
-    fetch("http://localhost:5000/login", {
+    fetch(`${baseUrl}/login`, {
       credentials: "include",
     })
       .catch((err) => {
@@ -30,6 +32,7 @@ const UserContext = ({ children }) => {
         setUser({ ...data });
         navigate("/home");
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <AccountContext.Provider value={{ user, setUser }}>

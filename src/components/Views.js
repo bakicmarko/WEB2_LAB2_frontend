@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
-import { FormControl, FormLabel, Button, Input } from "@chakra-ui/react";
 import Login from "./Login";
 import Home from "./Home";
+import Update from "./Update";
 
 const Views = () => {
   return (
@@ -9,7 +9,7 @@ const Views = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/home" element={<Home />} />
       <Route path="/logout" element={<Home />} />
-      <Route path="/logeed" element={<Button>dasda</Button>} />
+      <Route path="/update" element={<Update />} />
       <Route path="*" element={<Login />} />
     </Routes>
   );
