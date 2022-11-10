@@ -20,7 +20,7 @@ const useAuth = () => {
 };
 
 const handleLogout = () => {
-  fetch("http://localhost:4000/logout", {
+  fetch("http://localhost:5000/logout", {
     method: "POST",
     credentials: "include",
     headers: {
@@ -46,7 +46,7 @@ const Home = () => {
         console.log(values.csrfVulnSwitch);
         console.log(values.sqlVulnSwitch);
         fetch(
-          `http://localhost:4000/info?userquery=${values.username}&sqlVulnSwitch=${values.sqlVulnSwitch}&csrfVulnSwitch=${values.csrfVulnSwitch}`,
+          `http://localhost:5000/info?userquery=${values.username}&sqlVulnSwitch=${values.sqlVulnSwitch}&csrfVulnSwitch=${values.csrfVulnSwitch}`,
           {
             method: "GET",
             credentials: "include",

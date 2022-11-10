@@ -8,7 +8,7 @@ const UserContext = ({ children }) => {
   const [user, setUser] = useState({ loggedIn: null });
   const navigate = useNavigate();
   useEffect(() => {
-    fetch("http://localhost:4000/login", {
+    fetch("http://localhost:5000/login", {
       credentials: "include",
     })
       .catch((err) => {
