@@ -13,6 +13,7 @@ import {
 import { Form, Formik, Field } from "formik";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { baseUrl } from "./constant/constants";
 
 function validateUsername(value) {
   let error = null;
@@ -26,8 +27,8 @@ function validateUsername(value) {
 }
 
 const Update = () => {
-  const baseUrl = "https://web2-lab-backend.onrender.com";
-  // const baseUrl = "http://localhost:5000";
+  //const baseUrl = "https://web2-lab-backend.onrender.com";
+  //const baseUrl = "http://localhost:5000";
   const [data, setData] = useState(null);
   const navigate = useNavigate();
 

@@ -12,11 +12,11 @@ import {
 } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
 
-import { useNavigate } from "react-router";
+import { useNavigate, Navigate } from "react-router";
 
-const { Navigate } = require("react-router");
+import { baseUrl } from "./constant/constants";
 
-const baseUrl = "https://web2-lab-backend.onrender.com";
+// const baseUrl = "https://web2-lab-backend.onrender.com";
 // const baseUrl = "http://localhost:5000";
 
 const useAuth = () => {
@@ -24,27 +24,25 @@ const useAuth = () => {
   return user && user.loggedIn;
 };
 
+const handleLogout = async () => {
+  await fetch(`${baseUrl}/logout`, {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  window.location.href = "/";
+  // setIsLout(true);
+
+  // window.location.reload(false);
+};
+
 const Home = () => {
-  const handleLogout = async () => {
-    await fetch(`${baseUrl}/logout`, {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    setIsLout(true);
-
-    // window.location.reload(false);
-  };
-
   const [data, setData] = useState(null);
   const isLoggedIn = useAuth();
   const navigate = useNavigate();
-  const [isLout, setIsLout] = useState(false);
-  if (isLout === true) {
-    navigate("/login");
-  }
+
   return isLoggedIn ? (
     <Formik
       initialValues={{

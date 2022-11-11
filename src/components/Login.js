@@ -13,7 +13,8 @@ import { useContext } from "react";
 import { useNavigate } from "react-router";
 import { AccountContext } from "./AccountContext";
 
-const baseUrl = "https://web2-lab-backend.onrender.com";
+import { baseUrl } from "./constant/constants";
+//const baseUrl = "https://web2-lab-backend.onrender.com";
 // const baseUrl = "http://localhost:5000";
 
 const Login = () => {

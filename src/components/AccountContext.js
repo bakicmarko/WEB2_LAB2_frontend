@@ -1,9 +1,8 @@
 import { useNavigate } from "react-router";
-
+import { baseUrl } from "./constant/constants";
 const { createContext, useState, useEffect } = require("react");
-
 export const AccountContext = createContext();
-const baseUrl = "https://web2-lab-backend.onrender.com";
+//const baseUrl = "https://web2-lab-backend.onrender.com";
 // const baseUrl = "http://localhost:5000";
 
 const UserContext = ({ children }) => {
