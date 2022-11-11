@@ -24,21 +24,26 @@ const useAuth = () => {
   return user && user.loggedIn;
 };
 
-const handleLogout = () => {
-  fetch(`${baseUrl}/logout`, {
+const handleLogout = async () => {
+  await fetch(`${baseUrl}/logout`, {
     method: "POST",
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
   });
-  window.location.reload(false);
+  return true;
+  // window.location.reload(false);
 };
 
 const Home = () => {
   const [data, setData] = useState(null);
   const isLoggedIn = useAuth();
   const navigate = useNavigate();
+  const [isLout, setIsLout] = useState(false);
+  if (isLout) {
+    navigate("/login");
+  }
   return isLoggedIn ? (
     <Formik
       initialValues={{
@@ -95,7 +100,7 @@ const Home = () => {
               </Button>
             </HStack>
             <VStack marginTop={5} marginBottom={20}>
-              <Button onClick={handleLogout}>Logout</Button>
+              <Button onClick={setIsLout(handleLogout)}>Logout</Button>
               <Switch
                 size="lg"
                 name="sqlVulnSwitch"
