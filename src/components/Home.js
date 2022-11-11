@@ -25,17 +25,12 @@ const useAuth = () => {
 };
 
 const handleLogout = async () => {
-  await fetch(`${baseUrl}/logout`, {
+  const res = await fetch(`${baseUrl}/logout`, {
     method: "GET",
     credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-    },
   });
-  window.location.href = "/";
-  // setIsLout(true);
-
-  // window.location.reload(false);
+  console.log(res.status);
+  //if (res.status === 204) window.location.href = "/";
 };
 
 const Home = () => {

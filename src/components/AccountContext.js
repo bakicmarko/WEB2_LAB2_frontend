@@ -6,8 +6,6 @@ export const AccountContext = createContext();
 // const baseUrl = "http://localhost:5000";
 
 const UserContext = ({ children }) => {
-  console.log(baseUrl);
-  console.log(process.env.ENVIRONMENT);
   const [user, setUser] = useState({ loggedIn: null });
   const navigate = useNavigate();
   useEffect(() => {
