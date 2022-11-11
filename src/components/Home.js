@@ -26,7 +26,7 @@ const useAuth = () => {
 
 const handleLogout = async () => {
   await fetch(`${baseUrl}/logout`, {
-    method: "POST",
+    method: "GET",
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
@@ -41,7 +41,7 @@ const Home = () => {
   const isLoggedIn = useAuth();
   const navigate = useNavigate();
   const [isLout, setIsLout] = useState(false);
-  if (isLout) {
+  if (isLout === true) {
     navigate("/login");
   }
   return isLoggedIn ? (
