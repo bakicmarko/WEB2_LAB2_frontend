@@ -42,7 +42,7 @@ const Update = () => {
           alert(e);
           return;
         }
-        fetch(`${baseUrl}/update`, {
+        fetch(`${baseUrl}/profile/update`, {
           method: "PUT",
           credentials: "include",
           headers: {
@@ -52,6 +52,7 @@ const Update = () => {
         })
           .catch((err) => {
             console.log(err);
+            console.log("im here");
             return;
           })
           .then((res) => {
