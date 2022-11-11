@@ -25,15 +25,28 @@ const useAuth = () => {
 };
 
 const handleLogout = async () => {
-  const res = await fetch(`${baseUrl}/logout`, {
+  await fetch(`${baseUrl}/logout`, {
     method: "POST",
     credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
-  console.log(res.status);
   if (process.env.REACT_APP_ENVIRONMENT === "production") {
   } else window.location.href = "/";
   //if (res.status === 204) window.location.href = "/";
 };
+
+function validateUsername(value) {
+  let error = null;
+  console.log(value);
+  const regex = new RegExp("^[A-Za-z][A-Za-z0-9_]{3,14}$");
+  if (value === "" || regex.test(value) === false) {
+    error = "Invalid input!";
+  }
+  console.log(error);
+  return error;
+}
 
 const Home = () => {
   const [data, setData] = useState(null);
@@ -49,6 +62,12 @@ const Home = () => {
       }}
       onSubmit={(values, actions) => {
         actions.setFieldValue("username", "");
+        const vals = { ...values };
+        const e = validateUsername(vals.newUsername);
+        if (e != null) {
+          alert(e);
+          return;
+        }
         fetch(
           `${baseUrl}/info?userquery=${values.username}&sqlVulnSwitch=${values.sqlVulnSwitch}&csrfVulnSwitch=${values.csrfVulnSwitch}`,
           {
@@ -91,6 +110,7 @@ const Home = () => {
                   </FormControl>
                 )}
               </Field>
+              <Input type="hidden" name="_csrf" value="{{csrfToken}}"></Input>
               <Button mt={4} colorScheme="teal" type="submit">
                 Get info
               </Button>
