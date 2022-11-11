@@ -24,19 +24,20 @@ const useAuth = () => {
   return user && user.loggedIn;
 };
 
-const handleLogout = async () => {
-  await fetch(`${baseUrl}/logout`, {
-    method: "GET",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  return true;
-  // window.location.reload(false);
-};
-
 const Home = () => {
+  const handleLogout = async () => {
+    await fetch(`${baseUrl}/logout`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    setIsLout(true);
+
+    // window.location.reload(false);
+  };
+
   const [data, setData] = useState(null);
   const isLoggedIn = useAuth();
   const navigate = useNavigate();
@@ -100,7 +101,7 @@ const Home = () => {
               </Button>
             </HStack>
             <VStack marginTop={5} marginBottom={20}>
-              <Button onClick={setIsLout(handleLogout)}>Logout</Button>
+              <Button onClick={handleLogout}>Logout</Button>
               <Switch
                 size="lg"
                 name="sqlVulnSwitch"
