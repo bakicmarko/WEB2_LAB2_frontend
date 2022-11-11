@@ -7,6 +7,7 @@ export const AccountContext = createContext();
 
 const UserContext = ({ children }) => {
   console.log(baseUrl);
+  console.log(process.env.ENVIRONMENT);
   const [user, setUser] = useState({ loggedIn: null });
   const navigate = useNavigate();
   useEffect(() => {
