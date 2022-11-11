@@ -26,7 +26,7 @@ const useAuth = () => {
 
 const handleLogout = async () => {
   const res = await fetch(`${baseUrl}/logout`, {
-    method: "GET",
+    method: "POST",
     credentials: "include",
   });
   console.log(res.status);
