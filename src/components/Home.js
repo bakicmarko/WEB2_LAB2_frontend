@@ -15,7 +15,6 @@ import { Field, Form, Formik } from "formik";
 import { useNavigate, Navigate } from "react-router";
 
 import { baseUrl } from "./constant/constants";
-import { cookies } from "react-cookie";
 
 // const baseUrl = "https://web2-lab-backend.onrender.com";
 // const baseUrl = "http://localhost:5000";
@@ -32,7 +31,6 @@ const handleLogout = async () => {
   });
   console.log(res.status);
   if (process.env.REACT_APP_ENVIRONMENT === "production") {
-    cookies.remove("sid");
   } else window.location.href = "/";
   //if (res.status === 204) window.location.href = "/";
 };
