@@ -1,4 +1,4 @@
-const dev_url = "http://localhost:5000";
+const dev_url = "http://localhost:50000";
 
 const prod_url = "https://web2-lab-backend.onrender.com";
 
